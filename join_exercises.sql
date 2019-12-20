@@ -18,7 +18,7 @@ order by dept_name;
 
 # Find the name of all departments currently managed by women.
 
-select dept_name as 'Department Name', concat(employees.first_name, ' ', employees.last_name) as 'Department Manager'
+select dept_name as 'Department Name', concat(employees.first_name, ' ', employees.last_name) as 'Manager Name'
 from employees
          join dept_manager
               on employees.emp_no = dept_manager.emp_no
@@ -35,19 +35,22 @@ from employees
 on employees.emp_no = titles.emp_no
     join dept_emp
 on employees.emp_no = dept_emp.emp_no
-where dept_no = 'd009' AND titles.to_date LIKE '9999-%'
+where dept_no = 'd009' AND titles.to_date LIKE '9999-%' AND dept_emp.to_date LIKE '9999-%'
 group by title
 order by title;
 
 # Find the current salary of all current managers.
 
-select dept_name as 'Department Name', concat(employees.first_name, ' ', employees.last_name) as 'Name', max(salary) as 'Salary'
+select dept_name as 'Department Name', concat(employees.first_name, ' ', employees.last_name) as 'Name', salary as 'Salary'
 from employees
          join dept_manager
               on employees.emp_no = dept_manager.emp_no
          join departments
               on dept_manager.dept_no = departments.dept_no
-        join salaries
+         join salaries
               on employees.emp_no = salaries.emp_no
-where dept_manager.to_date LIKE '9999-%'
-group by dept_name, concat(employees.first_name, ' ', employees.last_name);
+where dept_manager.to_date LIKE '9999-%' AND salaries.to_date LIKE '9999-%'
+group by dept_name, concat(employees.first_name, ' ', employees.last_name), Salary;
+
+select * from employees where employees.first_name = 'Yuchang'; #111939
+select * from salaries where emp_no = 111939;

@@ -50,3 +50,5 @@ select birth_date, last_name from employees where birth_date = '1952-03-08';
 
 select title, emp_no, from_date from titles where title = 'Senior Engineer' AND from_date LIKE '1985-02-0%' order by emp_no limit 1;
 
+show indexes from titles;
+

@@ -52,14 +52,8 @@ select dept_name as 'Department'
 
 # find the first and last name of the emeployee with the highest salary
 
-select concat(first_name, ' ', last_name) as 'Moneybags'
-    from employees
-    where emp_no in(
-        select emp_no
-        from salaries
-        where max(salary));
 
-select first_name, last_name
+select concat(first_name, ' ', last_name) AS 'Moneybags'
     from employees
     where emp_no in (
         select emp_no
@@ -72,4 +66,6 @@ select first_name, last_name
 
 
 select * from salaries order by salary desc;
+select * from employees where emp_no = 43624;
+select * from employees where emp_no = 43624;
 select * from employees where emp_no = 43624;

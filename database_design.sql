@@ -60,7 +60,22 @@ SELECT * from advertisements;
 INSERT INTO advertisement_category(advertisement_id, category_id)
     VALUES (4,1);
 
+SELECT * from users;
+SELECT * from advertisements;
 SELECT * from advertisement_category;
+SELECT * from categories;
+
+# For given ad, what is e-mail of user created it?
+
+SELECT email AS 'User E-mail'
+FROM users
+WHERE id IN (
+    select user_id
+    FROM advertisements
+    WHERE id = 1
+    );
+
+# For given ad, what category/categories does it belong to
 
 SELECT category_title as 'Category'
 FROM categories
@@ -70,7 +85,9 @@ WHERE id IN (
     WHERE advertisement_id = 4
     );
 
-SELECT ad_title as 'Title of Ad'
+# For a given category, show all the ads in that category
+
+SELECT ad_title as 'Title of Ad', ad_desc as 'Ad Contents'
 FROM advertisements
 WHERE id IN (
     select advertisement_id
@@ -78,9 +95,12 @@ WHERE id IN (
     WHERE category_id = 5
     );
 
-SELECT ad_title
+# For a given user, show all the ads posted
+
+SELECT ad_title as 'Ad Title', ad_desc as 'Ad Contents'
 FROM advertisements
 WHERE user_id IN (
-    select id from users
-    where username = 'miggarc'
+    SELECT id FROM users
+    WHERE username = 'miggarc'
     )
+

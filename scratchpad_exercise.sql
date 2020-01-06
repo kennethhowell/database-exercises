@@ -23,13 +23,15 @@
 
 use music_db;
 
+DESCRIBE DeimosPlayer;
+
 SELECT COUNT(*) from DeimosPlayer;
 
-
-SELECT * from DeimosPlayer ORDER BY duration DESC LIMIT 3;
+SELECT artist_name, song_name, SEC_TO_TIME(duration) from DeimosPlayer ORDER BY duration DESC LIMIT 3;
+SELECT artist_name, song_name, duration from DeimosPlayer ORDER BY duration DESC LIMIT 3;
 
 SELECT artist_name, COUNT(*) from DeimosPlayer GROUP BY artist_name ORDER BY COUNT(*) DESC;
 
-SELECT song_name, artist_name FROM DeimosPlayer WHERE song_name LIKE 'non mauris morbi non';
+SELECT song_name, artist_name FROM DeimosPlayer WHERE song_name = 'non mauris morbi non';
 
 SELECT MAX(LENGTH(duration)) FROM DeimosPlayer;
